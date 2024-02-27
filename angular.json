@@ -32,7 +32,8 @@
             "styles": [
               "src/styles.scss",
               "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
-              "node_modules/primeng/resources/primeng.min.css"
+              "node_modules/primeng/resources/primeng.min.css",
+              "src/assets/line-awesome/css/line-awesome.min.css"
             ],
             "scripts": []
           },
@@ -62,13 +63,7 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.development.ts"
-                }
-              ]
+              "namedChunks": true
             }
           },
           "defaultConfiguration": "production"

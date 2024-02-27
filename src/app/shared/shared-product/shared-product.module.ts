@@ -10,6 +10,7 @@ import { ProductOverviewComponent } from './components/product-overview/product-
   ],
   imports: [
     CommonModule
-  ]
+  ],
+  exports:[ProductOverviewComponent]
 })
 export class SharedProductModule { }
