@@ -9,6 +9,12 @@ const routes: Routes = [
         (m => m.DashboardModule) ,
       ),
   },
+  {
+    path:'basket',
+    loadChildren:()=> import('./features/basket/basket.module').then(
+      (z => z.BasketModule),
+    ),
+  },
 ];
 
 @NgModule({
