@@ -11,7 +11,7 @@ export class SharedProductService {
   url = `${environment.apiUrl}/products`;
   constructor(private readonly http: HttpClient) {}
 
-  get(): Observable<Product[]> {
+  getAll(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.url}`);
   }
 }

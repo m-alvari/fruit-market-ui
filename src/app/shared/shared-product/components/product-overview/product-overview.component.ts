@@ -16,7 +16,7 @@ export class ProductOverviewComponent  implements OnInit{
   }
 
   loadData() {
-    this.sharedProductService.get().subscribe((res) => {
+    this.sharedProductService.getAll().subscribe((res) => {
       this.data = res;
     });
   }

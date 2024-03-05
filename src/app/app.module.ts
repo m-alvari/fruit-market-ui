@@ -6,10 +6,17 @@ import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./layout/header.component";
 import { FooterComponent } from "./layout/footer.component";
 import { HttpClientModule } from "@angular/common/http";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MainLayoutComponent } from './layout/main-layout.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, MainLayoutComponent],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

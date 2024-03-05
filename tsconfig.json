@@ -30,6 +30,7 @@
       "@features/*" :["src/app/features/*"],
       "@assets/*" :["src/assets/*"],
       "@env/*" :["src/environments/*"] ,
+      "@utils/*" :["src/app/utils/*"],
     }
   },
   "angularCompilerOptions": {
