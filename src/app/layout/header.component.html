@@ -1,5 +1,6 @@
 <!--Nav-->
-<nav id="header" class="w-full z-30 top-0 py-1">
+<p-toast></p-toast>
+<nav id="header" class="w-full z-30 top-0 py-1 bg-white ">
   <div
     class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3"
   >
@@ -18,24 +19,24 @@
       id="menu"
     >
       <nav>
-        <ul
+        <div
           class="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0"
         >
-          <li>
+          <div>
             <a
               class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
               href="#"
               >Shop</a
             >
-          </li>
-          <li>
+          </div>
+          <div>
             <a
               class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
               href="#"
               >About</a
             >
-          </li>
-        </ul>
+          </div>
+        </div>
       </nav>
     </div>
 
@@ -52,15 +53,52 @@
       </a>
     </div>
 
-    <div class="order-2 md:order-3 flex items-center" id="nav-content">
-      <a class="inline-block no-underline hover:text-black" routerLink="/accounts/login">
+    <div
+      class="order-2 md:order-2 flex items-center gap-2"
+      id="nav-content"
+      *ngIf="!user"
+    >
+      <a
+        class="inline-block no-underline hover:text-black"
+        routerLink="/accounts/login"
+      >
         <i
           class="las la-user fill-current hover:text-black"
           style="font-size: 32px"
         ></i>
       </a>
 
-      <a class="pl-3 inline-block no-underline hover:text-black" routerLink="/basket/cart">
+      <a
+        class="pl-1 inline-block no-underline hover:text-black"
+        routerLink="/basket/cart"
+      >
+        <i
+          class="las la-shopping-cart fill-current hover:text-black"
+          style="font-size: 32px"
+        ></i>
+      </a>
+    </div>
+    <div
+      class="order-3 md:order-3 flex items-center gap-2 "
+      id="nav-content"
+      *ngIf="user"
+    >
+      <a class="inline-block no-underline hover:text-black">
+        <i class="pr-1 pi pi-heart fill-current hover:text-black"></i>
+      </a>
+      <a class="inline-block no-underline hover:text-black ">
+        <p-button
+          icon="pi pi-user"
+          styleClass="text-black  bg-white border-transparent"
+          (click)="menu.toggle($event)"
+        ></p-button>
+        <p-menu   #menu [model]="items" [popup]="true"></p-menu>
+      </a>
+
+      <a
+        class="pl-1 inline-block no-underline hover:text-black"
+        routerLink="/basket/cart"
+      >
         <i
           class="las la-shopping-cart fill-current hover:text-black"
           style="font-size: 32px"

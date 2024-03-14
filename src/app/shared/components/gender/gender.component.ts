@@ -22,8 +22,16 @@ import { Gender } from "@shared/models/gender.model";
 export class GenderComponent implements ControlValueAccessor {
   genders: Gender[] = [];
   @Input() disabled = false;
-  formControl!: FormControl;
-  selectedGender: Gender | null = null;
+
+  private _value: Gender|null = null;
+  public get value(): Gender |null{
+    return this._value;
+  }
+
+  public set value(value: Gender|null) {
+    this._value = value;
+    this.onChange(value);
+  }
 
   constructor() {
     this.genders = [
@@ -34,7 +42,7 @@ export class GenderComponent implements ControlValueAccessor {
   }
   /** @internal */
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onChange = () => {};
+  onChange = (value: Gender|null) => {};
   /** @internal */
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onTouched = () => {};
@@ -42,8 +50,8 @@ export class GenderComponent implements ControlValueAccessor {
   writeValue(gender: GenderType): void {
     const g = this.genders.find((x) => x.value == gender);
     if (g !== undefined) {
-      this.selectedGender = g;
-      this.formControl.patchValue(g);
+      this.value = g;
+      this.onChange(this.value);
     }
   }
 
@@ -55,7 +63,11 @@ export class GenderComponent implements ControlValueAccessor {
     this.onTouched = fn;
   }
 
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+  touched = false;
+  markAsTouched() {
+    if (!this.touched) {
+      this.onTouched();
+      this.touched = true;
+    }
   }
 }

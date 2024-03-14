@@ -10,22 +10,29 @@ const routes: Routes = [
       {
         path: "",
         loadChildren: () =>
-          import("./features/dashboard/dashboard.module").then(
+          import("@features/dashboard/dashboard.module").then(
             (m) => m.DashboardModule,
           ),
       },
       {
         path: "basket",
         loadChildren: () =>
-          import("./features/basket/basket.module").then((z) => z.BasketModule),
+          import("@features/basket/basket.module").then((z) => z.BasketModule),
       },
       {
         path: "products",
         loadChildren: () =>
-          import("./features/product/product.module").then(
+          import("@features/product/product.module").then(
             (x) => x.ProductModule,
           ),
       },
+      {
+        path:"user",
+        loadChildren:()=>
+        import("@features/user/user.module").then(
+          (c) => c.UserModule
+        ),
+      }
 
     ],
   },

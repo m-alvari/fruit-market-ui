@@ -1,9 +1,8 @@
 <p-dropdown
-  formControlName="formControl"
+  [(ngModel)]="value"
   [options]="genders"
   optionLabel="name"
   optionValue="value"
   placeholder="Select a Gender"
-  [disabled]="disabled"
   styleClass="bg-grey-lighter text-grey-darker border border-grey-lighter rounded"
 ></p-dropdown>

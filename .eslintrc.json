@@ -15,6 +15,16 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
+        "@angular-eslint/template/elements-content": [
+          "error",
+          {
+            "allowList": [
+              "pButton",
+              "label",
+              "title"
+            ]
+          }
+        ],
         "@angular-eslint/directive-selector": [
           "error",
           {
