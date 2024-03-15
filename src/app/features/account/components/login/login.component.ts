@@ -32,7 +32,7 @@ export class LoginComponent {
     this.accountService
       .login({ userName: log.userName, password: log.password })
       .subscribe((res) => {
-        this.authService.setAuthKey(res.token);
+        this.authService.setAuthKey(res.accessToken);
         const user = this.authService.getUserInfo();
         if (user) {
           this.store.dispatch(loginActions.setUser({ user: user }));

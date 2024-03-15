@@ -169,6 +169,7 @@
             icon="pi pi-check"
             class="block w-full pr-4 py-3"
             iconPos="right"
+            [disabled]="form.invalid || !form.dirty"
             (click)="register()"
           ></p-button>
         </div>

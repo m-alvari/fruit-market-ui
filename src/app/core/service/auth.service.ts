@@ -25,7 +25,7 @@ export class AuthService {
       const res: any = jwt.jwtDecode(t);
       const f: JwtToken = {
         username: res.sub,
-        userId: +res.jti,
+        userId: +res.name,
         email: res.email,
         firstName: res.firstName,
         lastName: res.lastName,

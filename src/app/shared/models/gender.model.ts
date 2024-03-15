@@ -1,6 +1,6 @@
 import { GenderType } from "./gender.enum";
 
-export interface Gender {
+export interface GenderOption {
   name: string;
-  value: GenderType;
+  value: number;
 }

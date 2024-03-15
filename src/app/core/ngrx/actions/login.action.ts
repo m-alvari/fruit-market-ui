@@ -10,4 +10,9 @@ export const setUser = createAction(
 
 export const getUser = createAction('[user] get user');
 
-export const logOut = createAction('[user]');
+export const logOut = createAction('[user] logout user');
+
+export const updateUser = createAction('[user] update user',
+  props<{firstName:string ; lastName : string ; email:string}>()
+
+);

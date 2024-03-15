@@ -35,6 +35,16 @@ export const loginFeature = createFeature({
         return { ...state, isLogin: true, user: arg.user };
       },
     ),
+    on(loginAction.updateUser,(state:LoginState , arg: {firstName:string ; lastName : string ; email:string}): LoginState =>{
+        return {...state , user: {
+          firstName : arg.firstName ,
+          lastName : arg.lastName ,
+          email : arg.email,
+          userId: state.user?.userId!,
+          username : state.user?.username!
+        }
+      };
+    })
   )
 });
 

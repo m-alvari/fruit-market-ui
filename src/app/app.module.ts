@@ -5,7 +5,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./layout/header.component";
 import { FooterComponent } from "./layout/footer.component";
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { MainLayoutComponent } from './layout/main-layout.component';
 import { SharedModule } from "@shared/shared.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +13,8 @@ import { StoreModule } from "@ngrx/store";
 import { loginFeature } from "@core/ngrx/reducers/login.reducers";
 import { environment } from "@env/environment";
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { HttpAuthInterceptor } from "@core/interceptor/http-auth.interceptor";
+import { HttpErrorInterceptor } from "@core/interceptor/http-error.interceptor";
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent, MainLayoutComponent],
@@ -29,7 +31,18 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpAuthInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

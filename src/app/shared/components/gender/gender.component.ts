@@ -5,7 +5,7 @@ import {
   NG_VALUE_ACCESSOR,
 } from "@angular/forms";
 import { GenderType } from "@shared/models/gender.enum";
-import { Gender } from "@shared/models/gender.model";
+import { GenderOption } from "@shared/models/gender.model";
 
 @Component({
   selector: "app-gender",
@@ -20,15 +20,15 @@ import { Gender } from "@shared/models/gender.model";
   ],
 })
 export class GenderComponent implements ControlValueAccessor {
-  genders: Gender[] = [];
+  genders: GenderOption[] = [];
   @Input() disabled = false;
 
-  private _value: Gender|null = null;
-  public get value(): Gender |null{
+  private _value: GenderType|null = null;
+  public get value(): GenderType |null{
     return this._value;
   }
 
-  public set value(value: Gender|null) {
+  public set value(value: GenderType|null) {
     this._value = value;
     this.onChange(value);
   }
@@ -42,7 +42,7 @@ export class GenderComponent implements ControlValueAccessor {
   }
   /** @internal */
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onChange = (value: Gender|null) => {};
+  onChange = (value: GenderType|null) => {};
   /** @internal */
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onTouched = () => {};
@@ -50,7 +50,7 @@ export class GenderComponent implements ControlValueAccessor {
   writeValue(gender: GenderType): void {
     const g = this.genders.find((x) => x.value == gender);
     if (g !== undefined) {
-      this.value = g;
+      this.value = g.value;
       this.onChange(this.value);
     }
   }

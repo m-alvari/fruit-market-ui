@@ -27,6 +27,9 @@ export class RegisterComponent {
   }
 
   register() {
+    if (this.form.invalid) {
+      return ;
+    }
     const data = this.form.getRawValue() as User;
     const d = data.birthday as unknown as Date;
     data.birthday= d.toISOString().substring(0,10)

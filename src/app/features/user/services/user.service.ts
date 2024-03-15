@@ -13,7 +13,11 @@ export class UserService {
 
   constructor(private readonly http:HttpClient) { }
 
-  updateUser(id:number , user:User):Observable<User>{
+  get(id :number):Observable<User>{
+    return this.http.get<User>(`${this.url}/${id}`);
+  }
+
+  putUser(id:number , user:User):Observable<User>{
     return this.http.put<User>(`${this.url}/${id}` , user);
   }
 }
