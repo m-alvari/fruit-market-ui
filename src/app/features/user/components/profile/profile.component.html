@@ -1,3 +1,5 @@
+<p-toast></p-toast>
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 <div
   class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3"
 >
@@ -130,11 +132,11 @@
       <div class="-mx-3 md:flex mb-6">
         <div class="md:w-1/2 px-3 mt-3">
           <p-button
-            label="Submit"
+            label="Update"
             icon="pi pi-check"
             class="block w-full pr-4 py-3"
             iconPos="right"
-            (onClick)="updateUser()"
+            (onClick)="updateUserDialog()"
           ></p-button>
         </div>
       </div>

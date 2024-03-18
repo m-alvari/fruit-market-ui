@@ -6,7 +6,8 @@ import { ButtonModule } from "primeng/button";
 import { TooltipModule } from "primeng/tooltip";
 import { MenuModule } from "primeng/menu";
 import { ToastModule } from "primeng/toast";
-import { MessageService } from "primeng/api";
+import { ConfirmationService, MessageService } from "primeng/api";
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [],
@@ -18,6 +19,7 @@ import { MessageService } from "primeng/api";
     TooltipModule,
     MenuModule,
     ToastModule,
+    ConfirmDialogModule,
   ],
   exports: [
     DropdownModule,
@@ -27,9 +29,11 @@ import { MessageService } from "primeng/api";
     TooltipModule,
     MenuModule,
     ToastModule,
+    ConfirmDialogModule,
   ],
   providers: [
-    MessageService
+    MessageService,
+    ConfirmationService
   ]
 })
 export class PrimengSharedModule {}

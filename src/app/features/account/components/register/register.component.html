@@ -1,3 +1,5 @@
+<p-toast></p-toast>
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 <div
   class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3"
 >
@@ -170,7 +172,7 @@
             class="block w-full pr-4 py-3"
             iconPos="right"
             [disabled]="form.invalid || !form.dirty"
-            (click)="register()"
+            (onClick)="registerDialog()"
           ></p-button>
         </div>
       </div>

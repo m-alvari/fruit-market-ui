@@ -6,18 +6,27 @@ import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./layout/header.component";
 import { FooterComponent } from "./layout/footer.component";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
-import { MainLayoutComponent } from './layout/main-layout.component';
+import { MainLayoutComponent } from "./layout/main-layout.component";
 import { SharedModule } from "@shared/shared.module";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { StoreModule } from "@ngrx/store";
 import { loginFeature } from "@core/ngrx/reducers/login.reducers";
 import { environment } from "@env/environment";
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { HttpAuthInterceptor } from "@core/interceptor/http-auth.interceptor";
 import { HttpErrorInterceptor } from "@core/interceptor/http-error.interceptor";
+import { AdminMainLayoutComponent } from "@layout/admin/admin-main-layout.component";
+import { AdminHeaderLayoutComponent } from "@layout/admin/admin-header-layout.component";
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, MainLayoutComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    MainLayoutComponent,
+    AdminHeaderLayoutComponent,
+    AdminMainLayoutComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
