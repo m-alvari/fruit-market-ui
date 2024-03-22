@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { AdminMainLayoutComponent } from "@layout/admin/admin-main-layout.component";
 import { MainLayoutComponent } from "@layout/main-layout.component";
 
 const routes: Routes = [
@@ -47,16 +46,11 @@ const routes: Routes = [
 
   {
     path:"admin",
-    component:AdminMainLayoutComponent,
-    children:[
-      {
-        path: "",
-        loadChildren: () =>
-          import("@features/admin/admin-dashboard/admin-dashboard.module").then(
-            (m) => m.AdminDashboardModule,
-          ),
-      },
-    ]
+    loadChildren: () =>
+      import("@features/admin/admin.module").then(
+        (v) => v.AdminModule,
+      ),
+
   }
 ];
 

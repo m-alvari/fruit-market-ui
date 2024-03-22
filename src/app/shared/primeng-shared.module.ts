@@ -8,6 +8,8 @@ import { MenuModule } from "primeng/menu";
 import { ToastModule } from "primeng/toast";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TableModule } from 'primeng/table';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 @NgModule({
   declarations: [],
@@ -20,6 +22,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     MenuModule,
     ToastModule,
     ConfirmDialogModule,
+    TableModule,
+    DynamicDialogModule,
   ],
   exports: [
     DropdownModule,
@@ -30,6 +34,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     MenuModule,
     ToastModule,
     ConfirmDialogModule,
+    TableModule,
+    DynamicDialogModule
   ],
   providers: [
     MessageService,

@@ -1,55 +1,82 @@
-<header>
-  <!--Nav-->
-  <nav
-    aria-label="menu nav"
-    class="bg-gray-800 pt-2 md:pt-1 pb-1 px-1 mt-0 h-auto fixed w-full z-20 top-0"
+<!--Nav-->
+<p-toast></p-toast>
+<nav id="header" class="w-full z-30 top-0 py-1 bg-white">
+  <div
+    class="w-full flex flex-wrap items-center justify-between mt-0 px-6 py-4 container mx-auto"
   >
-    <div class="flex flex-wrap items-center">
-      <div
-        class="flex flex-shrink md:w-1/3 justify-center md:justify-start text-white"
-      >
-        <a href="#" aria-label="Home">
-          <span class="text-xl pl-2"><i class="em em-grinning"></i></span>
-        </a>
-      </div>
+    <label for="menu-toggle" class="cursor-pointer md:hidden block">
+      <i
+        class="las la-bars fill-current text-gray-900"
+        style="font-size: 32px"
+      ></i>
 
-      <div
-        class="flex flex-1 md:w-1/3 justify-center md:justify-start text-white px-2"
-      >
-        <a
-          class="flex items-center tracking-wide no-underline hover:no-underline font-bold text-white text-xl relative w-full"
-          routerLink=""
-        >
-          <i
-            class="las la-shopping-bag fill-current text-white mr-2"
-            style="font-size: 32px"
-          ></i>
-          Fruit-Market
-        </a>
-      </div>
+      <title>menu</title>
+    </label>
+    <input class="hidden" type="checkbox" id="menu-toggle" />
 
-      <div
-        class="flex w-full pt-2 content-center justify-between md:w-1/3 md:justify-end"
-      >
+    <div
+      class="hidden md:flex md:items-center md:w-auto w-full order-3 md:order-1"
+      id="menu"
+    >
+      <nav>
         <div
-          class="md:flex items-center justify-between text-base pt-4 md:pt-0"
+          class="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0"
         >
           <div>
             <a
-              class="inline-block no-underline hover:text-orange-500 text-white py-2 px-4"
-              href="#"
-              >Shop</a
+              class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
+              routerLink="/admin/products"
+              >products</a
             >
           </div>
           <div>
             <a
-              class="inline-block no-underline hover:text-orange-500 text-white py-2 px-4"
+              class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
               href="#"
-              >About</a
+              >users</a
+            >
+          </div>
+          <div>
+            <a
+              class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
+              href="#"
+              >baskets</a
+            >
+          </div>
+          <div>
+            <a
+              class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
+              href="#"
+              >orders</a
             >
           </div>
         </div>
-      </div>
+      </nav>
     </div>
-  </nav>
-</header>
+
+    <div class="order-1 md:order-2">
+      <a
+        class="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl"
+        routerLink="/admin/dashboard"
+      >
+        <i
+          class="las la-shopping-bag fill-current text-gray-800 mr-2"
+          style="font-size: 32px"
+        ></i>
+        Fruit-Market-Admin
+      </a>
+    </div>
+
+    <div class="order-2 md:order-2 flex items-center gap-2" id="nav-content">
+      <a
+        class="inline-block no-underline hover:text-black"
+        routerLink="/accounts/login"
+      >
+        <i
+          class="las la-user fill-current hover:text-black"
+          style="font-size: 32px"
+        ></i>
+      </a>
+    </div>
+  </div>
+</nav>

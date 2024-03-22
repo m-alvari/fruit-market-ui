@@ -15,17 +15,13 @@ import { environment } from "@env/environment";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { HttpAuthInterceptor } from "@core/interceptor/http-auth.interceptor";
 import { HttpErrorInterceptor } from "@core/interceptor/http-error.interceptor";
-import { AdminMainLayoutComponent } from "@layout/admin/admin-main-layout.component";
-import { AdminHeaderLayoutComponent } from "@layout/admin/admin-header-layout.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    MainLayoutComponent,
-    AdminHeaderLayoutComponent,
-    AdminMainLayoutComponent,
+    MainLayoutComponent
   ],
   imports: [
     BrowserModule,
