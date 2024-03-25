@@ -10,6 +10,7 @@ import { ConfirmationService, MessageService } from "primeng/api";
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TableModule } from 'primeng/table';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   declarations: [],
@@ -24,6 +25,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     ConfirmDialogModule,
     TableModule,
     DynamicDialogModule,
+    FileUploadModule,
   ],
   exports: [
     DropdownModule,
@@ -35,7 +37,8 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     ToastModule,
     ConfirmDialogModule,
     TableModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    FileUploadModule,
   ],
   providers: [
     MessageService,

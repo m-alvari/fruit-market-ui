@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { AfterViewInit, Component, OnInit, ViewChild } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import type { Product } from "@shared/shared-product/models";
 import {
@@ -6,19 +6,27 @@ import {
   DynamicDialogConfig,
   DynamicDialogRef,
 } from "primeng/dynamicdialog";
-import { AdminProductService } from "../services/admin-product-service.service";
+import { AdminProductService } from "../services/admin-product.service";
 import { MessageService } from "primeng/api";
-import { ViewModel } from "../models/view-model.model";
+import { CreateProduct } from "../models/create-product";
+import { ViewModel } from "../models";
+import { FileUpload } from "primeng/fileupload";
+import { dataURLtoFile } from "@utils/files.util";
 
 @Component({
   selector: "app-product-dialog",
   templateUrl: "./product-dialog.html",
   styleUrls: ["./product-dialog.scss"],
 })
-export class ProductDialog implements OnInit {
+export class ProductDialog implements OnInit, AfterViewInit {
+  @ViewChild("uploader") uploader!: FileUpload;
+
   form: FormGroup;
   id: number | null = null;
   viewModel!: ViewModel;
+  uploadedFiles: any[] = [];
+  ViewModel = ViewModel;
+
 
   constructor(
     private readonly dialogService: DialogService,
@@ -27,15 +35,20 @@ export class ProductDialog implements OnInit {
     public readonly ref: DynamicDialogRef,
     private readonly messageService: MessageService,
   ) {
+    this.viewModel = config.data.viewModel;
     this.form = new FormGroup({
-      nameProduct: new FormControl("", [Validators.required]),
-      price: new FormControl("", [Validators.required]),
+      name: new FormControl("", [Validators.required]),
+      price: new FormControl(null, [Validators.required]),
       imageUrl: new FormControl("", [Validators.required]),
     });
-
+  }
+  ngAfterViewInit(): void {
     if (this.viewModel == ViewModel.edit) {
       this.id = this.config.data.product.id;
-      this.form.patchValue(config.data.product);
+      this.form.patchValue(this.config.data.product);
+      const file = dataURLtoFile(this.config.data.product.imageUrl, "");
+      this.uploader.clear();
+      this.uploader.files = [file];
     }
   }
   ngOnInit(): void {}
@@ -47,8 +60,8 @@ export class ProductDialog implements OnInit {
   ): DynamicDialogRef {
     return dialog.open(ProductDialog, {
       data: { viewModel, product },
-      width: "70%",
-      height: "50%",
+      width: "80%",
+      header: viewModel == ViewModel.create ? "Add Product" : "Edit Product",
     });
   }
 
@@ -60,5 +73,39 @@ export class ProductDialog implements OnInit {
         detail: "add Message Content",
       }),
     );
+  }
+
+  onUpload(event: any) {
+    const result: File = event.files[0];
+    let reader = new FileReader();
+    reader.onload = (e) => {
+      let image = e.target?.result;
+
+      this.form.controls["imageUrl"].patchValue(image);
+    };
+    reader.readAsDataURL(result);
+  }
+
+  addEditDialog() {
+    if (this.form.invalid) {
+      return;
+    }
+    const add = this.form.getRawValue() as Product;
+    add.price = +add.price;
+    if (this.viewModel == ViewModel.create) {
+      this.adminProductService.createProduct(add).subscribe((res) => {
+        this.messageService.add({
+          severity: "success",
+          summary: "Product saved",
+          detail: "",
+        });
+        this.ref.close(res);
+      });
+    } else {
+      this.adminProductService.updateProduct(this.id!, add).subscribe((res) => {
+        this.ref.close(res);
+
+      });
+    }
   }
 }
