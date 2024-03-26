@@ -1,4 +1,4 @@
-import { GenderType } from "@shared/models/gender.enum";
+import type { GenderType } from "@shared/models/gender.enum";
 
 export interface User{
   id :number;

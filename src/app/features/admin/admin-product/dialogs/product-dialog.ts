@@ -8,17 +8,16 @@ import {
 } from "primeng/dynamicdialog";
 import { AdminProductService } from "../services/admin-product.service";
 import { MessageService } from "primeng/api";
-import { CreateProduct } from "../models/create-product";
-import { ViewModel } from "../models";
 import { FileUpload } from "primeng/fileupload";
 import { dataURLtoFile } from "@utils/files.util";
+import { ViewModel } from "@shared/models";
 
 @Component({
   selector: "app-product-dialog",
   templateUrl: "./product-dialog.html",
   styleUrls: ["./product-dialog.scss"],
 })
-export class ProductDialog implements OnInit, AfterViewInit {
+export class ProductDialog implements AfterViewInit {
   @ViewChild("uploader") uploader!: FileUpload;
 
   form: FormGroup;
@@ -27,9 +26,7 @@ export class ProductDialog implements OnInit, AfterViewInit {
   uploadedFiles: any[] = [];
   ViewModel = ViewModel;
 
-
   constructor(
-    private readonly dialogService: DialogService,
     private readonly config: DynamicDialogConfig,
     private readonly adminProductService: AdminProductService,
     public readonly ref: DynamicDialogRef,
@@ -41,9 +38,10 @@ export class ProductDialog implements OnInit, AfterViewInit {
       price: new FormControl(null, [Validators.required]),
       imageUrl: new FormControl("", [Validators.required]),
     });
+    close;
   }
   ngAfterViewInit(): void {
-    if (this.viewModel == ViewModel.edit) {
+    if (this.viewModel == ViewModel.Edit) {
       this.id = this.config.data.product.id;
       this.form.patchValue(this.config.data.product);
       const file = dataURLtoFile(this.config.data.product.imageUrl, "");
@@ -51,7 +49,6 @@ export class ProductDialog implements OnInit, AfterViewInit {
       this.uploader.files = [file];
     }
   }
-  ngOnInit(): void {}
 
   public static open(
     dialog: DialogService,
@@ -61,7 +58,7 @@ export class ProductDialog implements OnInit, AfterViewInit {
     return dialog.open(ProductDialog, {
       data: { viewModel, product },
       width: "80%",
-      header: viewModel == ViewModel.create ? "Add Product" : "Edit Product",
+      header: viewModel == ViewModel.Create ? "Add Product" : "Edit Product",
     });
   }
 
@@ -92,7 +89,7 @@ export class ProductDialog implements OnInit, AfterViewInit {
     }
     const add = this.form.getRawValue() as Product;
     add.price = +add.price;
-    if (this.viewModel == ViewModel.create) {
+    if (this.viewModel == ViewModel.Create) {
       this.adminProductService.createProduct(add).subscribe((res) => {
         this.messageService.add({
           severity: "success",
@@ -104,7 +101,6 @@ export class ProductDialog implements OnInit, AfterViewInit {
     } else {
       this.adminProductService.updateProduct(this.id!, add).subscribe((res) => {
         this.ref.close(res);
-
       });
     }
   }

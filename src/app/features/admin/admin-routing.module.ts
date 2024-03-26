@@ -23,6 +23,13 @@ const routes: Routes = [
             (l) => l.AdminProductModule,
           ),
       },
+      {
+        path: "users",
+        loadChildren: () =>
+          import("@features/admin/admin-user/admin-user.module").then(
+            (j) => j.AdminUserModule,
+          ),
+      },
     ],
   },
 ];
