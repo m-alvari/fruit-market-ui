@@ -70,10 +70,11 @@
   </form>
 </div>
 <div class="p-dialog-footer">
-  <p-button class="ml-3" label="cancel" (click)="ref.close()"></p-button>
+
   <p-button
-    label="{{viewModel == ViewModel.create ? 'Add' : 'Edit'}}"
+    label="{{viewModel == ViewModel.Create ? 'Add' : 'Edit'}}"
     (click)="addEditDialog()"
     [disabled]="form.invalid || !form.dirty"
   ></p-button>
+  <p-button class="ml-3" label="cancel" (click)="ref.close()"></p-button>
 </div>

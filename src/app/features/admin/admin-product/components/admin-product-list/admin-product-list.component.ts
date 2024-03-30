@@ -3,10 +3,13 @@ import { Product } from "@shared/shared-product/models";
 import { SharedProductService } from "@shared/shared-product/services/shared-product.service";
 import { ProductDialog } from "../../dialogs/product-dialog";
 import { DialogService } from "primeng/dynamicdialog";
-import { ViewModel } from "@features/admin/admin-product/models/view-model.model";
 import { AdminProductService } from "../../services/admin-product.service";
-import { config } from "rxjs";
-import { MessageService } from "primeng/api";
+import {
+  ConfirmEventType,
+  ConfirmationService,
+  MessageService,
+} from "primeng/api";
+import { ViewModel } from "@shared/models";
 
 @Component({
   selector: "app-admin-product-list",
@@ -22,6 +25,7 @@ export class AdminProductListComponent implements OnInit {
     private readonly adminProductService: AdminProductService,
     private readonly dialogService: DialogService,
     private readonly messageService: MessageService,
+    private confirmationService: ConfirmationService,
   ) {}
 
   ngOnInit(): void {
@@ -39,7 +43,7 @@ export class AdminProductListComponent implements OnInit {
     ProductDialog.open(
       this.dialogService,
       null,
-      ViewModel.create,
+      ViewModel.Create,
     ).onClose.subscribe((res) => {
       if (res) {
         this.products.push(res);
@@ -52,7 +56,7 @@ export class AdminProductListComponent implements OnInit {
     ProductDialog.open(
       this.dialogService,
       product,
-      ViewModel.edit,
+      ViewModel.Edit,
     ).onClose.subscribe((res: Product | null) => {
       if (res) {
         const n = this.products.findIndex((x) => x.id == res.id);
@@ -71,6 +75,35 @@ export class AdminProductListComponent implements OnInit {
         summary: "Success",
         detail: "Message Content",
       });
+    });
+  }
+
+  deleteProductConfirm(id: number) {
+    this.confirmationService.confirm({
+      message: "Do you want to delete this product?",
+      header: "Delete Product",
+      icon: "pi pi-info-circle",
+      accept: () => {
+        this.deleteProduct(id);
+      },
+      reject: (type: ConfirmEventType) => {
+        switch (type) {
+          case ConfirmEventType.REJECT:
+            this.messageService.add({
+              severity: "error",
+              summary: "Rejected",
+              detail: "You have rejected",
+            });
+            break;
+          case ConfirmEventType.CANCEL:
+            this.messageService.add({
+              severity: "warn",
+              summary: "Cancelled",
+              detail: "You have cancelled",
+            });
+            break;
+        }
+      },
     });
   }
 }

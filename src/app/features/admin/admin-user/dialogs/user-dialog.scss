@@ -1,0 +1,15 @@
+::ng-deep {
+  .p-component.p-dropdown {
+    @apply w-full;
+  }
+
+  .p-calendar {
+    @apply w-full;
+  }
+
+  .p-calendar {
+    .p-component {
+      @apply py-3 px-4 w-full;
+    }
+  }
+}

@@ -3,12 +3,12 @@
 <div
   class="bg-gradient-to-r from-blue-900 to-gray-800 p-2 shadow text-lg rounded-2xl text-white"
 >
-  <h1 class="font-bold pl-2">Products</h1>
+  <h1 class="font-bold pl-2">Users</h1>
 </div>
 
 <div class="card mt-6">
   <p-table
-    [value]="products"
+    [value]="users"
     [paginator]="true"
     [rows]="5"
     [showCurrentPageReport]="true"
@@ -20,47 +20,50 @@
       <div
         class="flex align-items-center justify-content-between justify-between"
       >
-        Products
-        <p-button icon="pi pi-plus" (onClick)="openDialogProduct()"></p-button>
+        Users
+        <p-button icon="pi pi-plus" (onClick)="openDialogUser()"></p-button>
       </div>
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th>Name</th>
-        <th>Image</th>
-        <th>Price</th>
+        <th>firstName</th>
+        <th>lastName</th>
+        <th>birthday</th>
+        <th>email</th>
+        <th>gender</th>
+        <th>phoneNumber</th>
+        <th>imageProfile</th>
         <th>operation</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-product>
+    <ng-template pTemplate="body" let-user>
       <tr>
-        <td>{{ product.name }}</td>
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.birthday }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ genderMap[user.gender] }}</td>
+        <td>{{ user.phoneNumber }}</td>
         <td>
           <img
-            src="{{ product.imageUrl }}"
-            [alt]="product.name"
+            src="{{ user.imageProfile }}"
+            alt=""
+            [alt]="user.firstName"
             width="100"
             height="66px"
             class="shadow-4"
           />
         </td>
-        <td>{{ product.price | currency: "USD" }}</td>
+
         <td>
-          <p-button
-            class="mr-3"
-            icon="pi pi-pencil"
-            (onClick)="updateDialogProduct(product)"
-          ></p-button>
-          <p-button
-            icon="pi pi-trash "
-            (onClick)="deleteProductConfirm(product.id)"
-          ></p-button>
+          <p-button class="mr-3" icon="pi pi-pencil" (onClick)="updateUserDialog(user)" ></p-button>
+          <p-button icon="pi pi-trash" severity="danger" (onClick)="deleteUserConfirm(user.id)" ></p-button>
         </td>
       </tr>
     </ng-template>
     <ng-template pTemplate="summary">
       <div class="flex align-items-center justify-content-between">
-        In total there are {{ products ? products.length : 0 }} products.
+        In total there are {{ users ? users.length : 0 }} users.
       </div>
     </ng-template>
   </p-table>
