@@ -10,6 +10,7 @@ import {
   MessageService,
 } from "primeng/api";
 import { ViewModel } from "@shared/models";
+import { OrderBy } from "@shared/shared-product/models/orderby.enum";
 
 @Component({
   selector: "app-admin-product-list",
@@ -33,7 +34,7 @@ export class AdminProductListComponent implements OnInit {
   }
 
   loadData() {
-    this.sharedProductService.getAll().subscribe((res) => {
+    this.sharedProductService.getAll("",8,0,OrderBy.Desc).subscribe((res) => {
       this.products = res;
     });
   }

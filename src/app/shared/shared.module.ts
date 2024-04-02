@@ -4,23 +4,15 @@ import { PrimengSharedModule } from "./primeng-shared.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DialogService } from "primeng/dynamicdialog";
 
-
 @NgModule({
   declarations: [GenderComponent],
-  imports: [
-    PrimengSharedModule,
-    ReactiveFormsModule,
-    FormsModule,
-  ],
+  imports: [PrimengSharedModule, ReactiveFormsModule, FormsModule],
   exports: [
     GenderComponent,
     PrimengSharedModule,
     ReactiveFormsModule,
     FormsModule,
-
   ],
-  providers:[
-    DialogService
-  ]
+  providers: [DialogService],
 })
 export class SharedModule {}

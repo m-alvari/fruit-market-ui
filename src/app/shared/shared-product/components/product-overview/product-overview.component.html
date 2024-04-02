@@ -6,48 +6,64 @@
       >
         <a
           class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl"
-          href="#"
         >
           Store
         </a>
-
         <div class="flex items-center" id="store-nav-content">
-          <a class="pl-3 inline-block no-underline hover:text-black" href="#">
+          <a
+            *ngIf="isAscending"
+            class="pl-3 inline-block no-underline hover:text-black"
+            (click)="sortAces()"
+          >
             <i
-              class="las la-sort-amount-up-alt fill-current hover:text-black"
+              class="las las la-sort-alpha-up fill-current hover:text-black"
               style="font-size: 24px"
             ></i>
           </a>
 
-          <a class="pl-3 inline-block no-underline hover:text-black" href="#">
+          <a
+            class="pl-3 inline-block no-underline hover:text-black"
+            *ngIf="!isAscending"
+            (click)="sortAces()"
+          >
             <i
-              class="las la-search fill-current hover:text-black"
+              class="las la-sort-alpha-up-alt fill-current hover:text-black"
               style="font-size: 24px"
             ></i>
           </a>
+
+          <!-- search -->
+          <a class="pl-4 inline-block no-underline hover:text-black" >
+            <div class="p-inputgroup">
+
+            <input type="text" pInputText placeholder="search..." [(ngModel)]="searchValue" (keydown)="onKeyDown($event)"/>
+              <button type="button" pButton icon="pi pi-search" (click)="search()"></button>
+            </div>
+
+          </a>
+
         </div>
       </div>
     </nav>
 
     <div class="md:w-1/3 xl:w-1/4 p-6 flex flex-col" *ngFor="let item of data">
-      <a href="products/detail/{{item.id}}">
+      <a href="products/detail/{{ item.id }}">
         <img
-        width="108%"
-        height="241px"
+          width="108%"
+          height="241px"
           alt="fruit"
           class="hover:grow hover:shadow-lg overflow-hidden"
           src="{{ item.imageUrl }}"
         />
       </a>
-        <div class="pt-3 flex items-center justify-between">
-          <p class="">{{ item.name }}</p>
-          <i
-            class="lar la-heart h-6 w-6 fill-current text-gray-600 hover:text-black"
-            style="font-size: 24px"
-          ></i>
-        </div>
-        <p class="pt-1 text-gray-900">{{ item.price }}$</p>
-
+      <div class="pt-3 flex items-center justify-between">
+        <p>{{ item.name }}</p>
+        <i
+          class="lar la-heart h-6 w-6 fill-current text-gray-600 hover:text-black"
+          style="font-size: 24px"
+        ></i>
+      </div>
+      <p class="pt-1 text-gray-900">{{ item.price }}$</p>
     </div>
   </div>
 </section>
