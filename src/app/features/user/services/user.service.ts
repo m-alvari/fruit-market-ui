@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
 import { User } from '@shared/models/user.model';
+import { OrderBy } from '@shared/shared-product/models/orderby.enum';
 import { Observable } from 'rxjs';
 
 @Injectable({

@@ -8,6 +8,7 @@ import {
 import { GenderType, User, ViewModel } from "@shared/models";
 import { DialogService } from "primeng/dynamicdialog";
 import { UserDialog } from "../../dialogs/user-dialog";
+import { OrderBy } from "@shared/shared-product/models/orderby.enum";
 
 @Component({
   selector: "app-admin-user-list",
@@ -62,7 +63,7 @@ export class AdminUserListComponent implements OnInit {
   }
 
   loadData() {
-    this.adminUserService.getUserAll().subscribe((res) => {
+    this.adminUserService.getUserAll("",8,0,OrderBy.Desc).subscribe((res) => {
       this.users = res;
     });
   }

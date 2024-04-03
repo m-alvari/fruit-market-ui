@@ -1,12 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  OnInit,
-  Output,
-  ViewChild,
-} from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { User, ViewModel } from "@shared/models";
 import { dataURLtoFile } from "@utils/files.util";
@@ -19,7 +11,6 @@ import {
 import { AdminUserService } from "../services/admin-user.service";
 import { FileUpload } from "primeng/fileupload";
 import { format } from "date-fns";
-import { trigger } from "@angular/animations";
 
 @Component({
   selector: "app-user-dialog",
@@ -27,7 +18,7 @@ import { trigger } from "@angular/animations";
   styleUrls: ["./user-dialog.scss"],
 })
 export class UserDialog implements OnInit {
-  @ViewChild("uploader", { static: false }) uploader!: FileUpload;
+  @ViewChild("uploader") uploader!: FileUpload;
 
   form: FormGroup;
   id: number | null = null;
@@ -40,7 +31,7 @@ export class UserDialog implements OnInit {
     private readonly adminUserService: AdminUserService,
     public readonly ref: DynamicDialogRef,
     private readonly messageService: MessageService,
-    private readonly cd : ChangeDetectorRef,
+    private readonly cd: ChangeDetectorRef,
   ) {
     this.viewModel = config.data.viewModel;
     this.form = new FormGroup({
@@ -56,17 +47,14 @@ export class UserDialog implements OnInit {
       email: new FormControl("", [Validators.required, Validators.email]),
       birthday: new FormControl("", [Validators.required]),
       gender: new FormControl("", [Validators.required]),
-      password: new FormControl("", [Validators.required]),
-      imageProfile: new FormControl(""),
+      password: new FormControl({value:'', disabled:true}, [Validators.required]),
+      imageProfile: new FormControl("", [Validators.required]),
     });
   }
   ngOnInit(): void {
     if (this.viewModel == ViewModel.Edit) {
       this.id = this.config.data.user.id;
       this.form.patchValue(this.config.data.user);
-      this.form.controls["birthday"].patchValue(
-        new Date(this.config.data.user.birthday),
-      );
       const file = dataURLtoFile(this.config.data.user.imageProfile, "");
       this.cd.detectChanges();
       this.uploader.clear();

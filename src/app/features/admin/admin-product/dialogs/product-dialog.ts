@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import type { Product } from "@shared/shared-product/models";
 import {
@@ -31,7 +31,7 @@ export class ProductDialog implements OnInit {
     private readonly adminProductService: AdminProductService,
     public readonly ref: DynamicDialogRef,
     private readonly messageService: MessageService,
-    private readonly cd:ChangeDetectorRef,
+    private readonly cd: ChangeDetectorRef,
   ) {
     this.viewModel = config.data.viewModel;
     this.form = new FormGroup({
@@ -49,8 +49,8 @@ export class ProductDialog implements OnInit {
       this.cd.detectChanges();
       this.uploader.clear();
       this.uploader.files = [file];
-    }  }
-
+    }
+  }
 
   public static open(
     dialog: DialogService,

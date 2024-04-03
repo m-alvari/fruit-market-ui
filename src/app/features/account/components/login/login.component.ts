@@ -21,8 +21,8 @@ export class LoginComponent {
     private readonly store: Store,
   ) {
     this.form = new FormGroup({
-      userName: new FormControl("11111", [Validators.required]),
-      password: new FormControl("123", [Validators.required]),
+      userName: new FormControl("", [Validators.required]),
+      password: new FormControl("", [Validators.required]),
     });
   }
 
