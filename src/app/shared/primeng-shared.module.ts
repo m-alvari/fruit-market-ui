@@ -11,6 +11,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TableModule } from 'primeng/table';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { FileUploadModule } from 'primeng/fileupload';
+import { BadgeModule } from 'primeng/badge';
 
 @NgModule({
   declarations: [],
@@ -26,6 +27,7 @@ import { FileUploadModule } from 'primeng/fileupload';
     TableModule,
     DynamicDialogModule,
     FileUploadModule,
+    BadgeModule
   ],
   exports: [
     DropdownModule,
@@ -39,6 +41,7 @@ import { FileUploadModule } from 'primeng/fileupload';
     TableModule,
     DynamicDialogModule,
     FileUploadModule,
+    BadgeModule
   ],
   providers: [
     MessageService,
