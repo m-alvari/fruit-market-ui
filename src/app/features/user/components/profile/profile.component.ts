@@ -14,7 +14,6 @@ import {
 import { FileUpload } from "primeng/fileupload";
 import { dataURLtoFile } from "@utils/files.util";
 import { DynamicDialogConfig } from "primeng/dynamicdialog";
-import { OrderBy } from "@shared/shared-product/models/orderby.enum";
 
 @Component({
   selector: "app-profile",

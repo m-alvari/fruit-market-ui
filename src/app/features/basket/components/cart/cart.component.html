@@ -12,7 +12,7 @@
       </div>
     </nav>
     <hr class="m-4" />
-    <div class="md:w-1/3 xl:w-1/4 p-6 flex flex-col">
+    <div class="md:w-1/3 xl:w-1/4 p-6 flex flex-col" *ngIf="data.length == 0">
       <p class="mb-5">empty basket
         <i
         class="las la-exclamation h-6 w-6 fill-current text-gray-600 hover:text-black"
@@ -27,34 +27,25 @@
         <a class="ml-1 text-sky-400" routerLink="">click here</a>
 
       </p>
+</div>
 
 
-
-      <!-- <a>
-        <img
-          alt="fruit"
-          class="hover:grow hover:shadow-lg overflow-hidden"
-          src="../../../../../assets/images/p1.jpg"
-        />
+      <div class="md:w-1/3 xl:w-1/4 p-6 flex flex-col" *ngFor="let item of data">
+        <a href="products/detail/{{ item.productId }}">
+          <img
+            width="108%"
+            height="241px"
+            alt="fruit"
+            class="hover:grow hover:shadow-lg overflow-hidden"
+            src="{{ item.imageUrl }}"
+          />
+        </a>
         <div class="pt-3 flex items-center justify-between">
-          <p class="">product name</p>
-          <div class="columns-2">
-            <div>
-              <i
-                class="las la-minus h-6 w-6 fill-current text-gray-600 hover:text-black"
-                style="font-size: 24px"
-              ></i>
-            </div>
-            <div>
-              <i
-                class="las la-plus h-6 w-6 fill-current text-gray-600 hover:text-black"
-                style="font-size: 24px"
-              ></i>
-            </div>
-          </div>
+          <p>{{ item.count }}</p>
+
         </div>
-        <p class="pt-1 text-gray-900"></p>
-      </a> -->
+        <p class="pt-1 text-gray-900">{{ item.count }}$</p>
+      </div>
     </div>
-  </div>
+
 </section>

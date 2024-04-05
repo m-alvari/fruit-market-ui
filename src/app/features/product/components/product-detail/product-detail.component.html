@@ -1,11 +1,10 @@
 <div class="flex-1 pt-2 pb-1">
   <nav id="store" class="w-full z-30 top-0 px-6 py-1">
     <div
-      class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3"
+      class="w-full xsm:container xsm:mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3"
     >
       <a
         class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl"
-
       >
         {{ data2?.name }}
       </a>
@@ -15,7 +14,7 @@
 
 <div class="grid lg:grid-cols-2 md:grid-cols-1">
   <div class="p-6" *ngIf="data2">
-    <a href="#" class="md:flex md:justify-around lg:block">
+    <a  class="md:flex md:justify-around lg:block">
       <img
         width="70%"
         height="70%"
@@ -26,12 +25,30 @@
     </a>
   </div>
 
-  <div class="p-6 md:w-full" *ngIf="data2">
-    <p class="text-xl">{{ data2.name }}</p>
-    <i
-      class="las la-plus h-6 w-6 fill-current text-gray-600 hover:text-black"
-      style="font-size: 24px"
-    ></i>
+  <div class="p-6 md:w-full text-xl" *ngIf="data2">
+    <p class="text-2xl">{{ data2.name }}</p>
     <p class="pt-1 text-gray-900">{{ data2.price }}$</p>
+
+    <div class="relative flex items-center max-w-[9rem]  text-gray-900">
+      <div
+        class="rounded-s-lg p-3 h-11  focus:outline-none" (click)="increment()"
+      >
+        <i class="las la-plus"></i>
+    </div>
+      <div>
+        <input
+         [(ngModel)]="counterValue"
+          type="text"
+          class="h-11 text-center text-gray-900 text-sm block w-full py-2.5"
+          placeholder="0"
+          required
+      /></div>
+
+      <div
+        class="rounded-e-lg p-3 h-11  focus:outline-none"  (click)="decrement()"
+      >
+        <i class="las la-minus"></i>
+      </div>
+    </div>
   </div>
 </div>

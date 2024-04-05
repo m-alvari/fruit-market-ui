@@ -8,9 +8,10 @@
           class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl"
         >
           Store
+
         </a>
-        <div class="flex items-center" id="store-nav-content">
-          <a
+        <div class="flex items-center">
+          <div
             *ngIf="isAscending"
             class="pl-3 inline-block no-underline hover:text-black"
             (click)="sortAces()"
@@ -19,9 +20,9 @@
               class="las las la-sort-alpha-up fill-current hover:text-black"
               style="font-size: 24px"
             ></i>
-          </a>
+        </div>
 
-          <a
+          <div
             class="pl-3 inline-block no-underline hover:text-black"
             *ngIf="!isAscending"
             (click)="sortAces()"
@@ -30,7 +31,7 @@
               class="las la-sort-alpha-up-alt fill-current hover:text-black"
               style="font-size: 24px"
             ></i>
-          </a>
+      </div>
 
           <!-- search -->
           <a class="pl-4 inline-block no-underline hover:text-black" >
