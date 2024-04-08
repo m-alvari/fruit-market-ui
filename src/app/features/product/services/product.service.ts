@@ -1,7 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "@env/environment";
-import { BasketList } from "@features/basket/models/basket-list.model";
 import { Product } from "@shared/shared-product/models";
 import { Observable } from "rxjs";
 

@@ -1,9 +1,9 @@
-import { BasketList } from "@features/basket/models/basket-list.model";
 import { createFeature, createReducer, on } from "@ngrx/store";
 import * as basketAction from "../actions/basket.actions";
+import { BasketDetail } from "@features/basket/models/basket-detail.model";
 
 export interface BasketState {
-  basket: BasketList[];
+  basket: BasketDetail[];
   isLoaded: boolean;
 }
 
@@ -23,8 +23,29 @@ export const basketFeature = createFeature({
 
     on(
       basketAction.setBasket,
-      (state: BasketState, b: { basket: BasketList[] }): BasketState => {
+      (state: BasketState, b: { basket: BasketDetail[] }): BasketState => {
         return { ...state, basket: b.basket, isLoaded: true };
+      },
+    ),
+
+    on(
+      basketAction.deleteBasket,
+      (state: BasketState, basket: {productId:number}): BasketState => {
+        return {
+          ...state,
+          basket: state.basket.filter((x) => x.productId != basket.productId),
+        };
+      },
+    ),
+
+    on(
+      basketAction.addBasket,
+      (state: BasketState, basket: BasketDetail): BasketState => {
+        return {
+          ...state,
+          basket: [...state.basket, basket],
+          isLoaded: true,
+        };
       },
     ),
   ),

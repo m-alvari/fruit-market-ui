@@ -2,8 +2,9 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "@env/environment";
 import { Observable } from "rxjs";
-import { BasketList } from "../models/basket-list.model";
 import { CreateBasket } from "../models/create-basket.model";
+import { BasketDetail } from "../models/basket-detail.model";
+import { Basket } from "../models/basket-list.model";
 
 @Injectable({
   providedIn: "root",
@@ -13,20 +14,20 @@ export class BasketService {
 
   constructor(private readonly http: HttpClient) {}
 
-  getBasket(): Observable<BasketList[]> {
-    return this.http.get<BasketList[]>(`${this.url}`);
+  getBasket(): Observable<BasketDetail[]> {
+    return this.http.get<BasketDetail[]>(`${this.url}`);
   }
 
-  postBasket(basket: CreateBasket): Observable<BasketList> {
-    return this.http.post<BasketList>(`${this.url}`, basket);
+  postBasket(basket: CreateBasket): Observable<Basket> {
+    return this.http.post<Basket>(`${this.url}`, basket);
   }
 
-  deleteBasket(id: number): Observable<BasketList> {
-    return this.http.delete<BasketList>(`${this.url}/${id}`);
+  deleteBasket(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}/${id}`);
   }
 
-  getBasketWithId(id: number): Observable<BasketList> {
-    return this.http.get<BasketList>(`${this.url}/${id}`);
+  getBasketWithId(id: number): Observable<Basket> {
+    return this.http.get<Basket>(`${this.url}/${id}`);
   }
 
 

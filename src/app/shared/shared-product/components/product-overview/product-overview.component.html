@@ -1,4 +1,4 @@
-<section class="bg-white py-8">
+<section class="py-8">
   <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
     <nav id="store" class="w-full z-30 top-0 px-6 py-1">
       <div
@@ -8,7 +8,6 @@
           class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl"
         >
           Store
-
         </a>
         <div class="flex items-center">
           <div
@@ -20,7 +19,7 @@
               class="las las la-sort-alpha-up fill-current hover:text-black"
               style="font-size: 24px"
             ></i>
-        </div>
+          </div>
 
           <div
             class="pl-3 inline-block no-underline hover:text-black"
@@ -31,18 +30,26 @@
               class="las la-sort-alpha-up-alt fill-current hover:text-black"
               style="font-size: 24px"
             ></i>
-      </div>
+          </div>
 
           <!-- search -->
-          <a class="pl-4 inline-block no-underline hover:text-black" >
+          <a class="pl-4 inline-block no-underline hover:text-black">
             <div class="p-inputgroup">
-
-            <input type="text" pInputText placeholder="search..." [(ngModel)]="searchValue" (keydown)="onKeyDown($event)"/>
-              <button type="button" pButton icon="pi pi-search" (click)="search()"></button>
+              <input
+                type="text"
+                pInputText
+                placeholder="search..."
+                [(ngModel)]="searchValue"
+                (keydown)="onKeyDown($event)"
+              />
+              <button
+                type="button"
+                pButton
+                icon="pi pi-search"
+                (click)="search()"
+              ></button>
             </div>
-
           </a>
-
         </div>
       </div>
     </nav>
