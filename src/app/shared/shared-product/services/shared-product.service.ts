@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { environment } from "@env/environment";
 import { Product } from "../models";
 import { OrderBy } from "../models/orderby.enum";
+import { ProductDetail } from "../models/product-detail.model";
 
 @Injectable({
   providedIn: "root",
@@ -17,8 +18,8 @@ export class SharedProductService {
     take: number,
     skip: number,
     orderBy: OrderBy,
-  ): Observable<Product[]> {
-    return this.http.get<Product[]>(
+  ): Observable<ProductDetail[]> {
+    return this.http.get<ProductDetail[]>(
       `${this.url}?q=${q}&take=${take}&skip=${skip}&orderBy=${orderBy}`,
     );
   }

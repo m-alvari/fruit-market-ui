@@ -21,3 +21,8 @@ export const deleteBasket = createAction(
 
   props<{productId:number}>(),
 );
+
+export const clearBasket = createAction(
+  "[basket] clear basket",
+
+);

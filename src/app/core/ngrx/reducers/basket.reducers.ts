@@ -48,6 +48,17 @@ export const basketFeature = createFeature({
         };
       },
     ),
+
+    on(
+      basketAction.clearBasket,
+      (state:BasketState):BasketState=>{
+        return {
+          ...state,
+          basket:[],
+          isLoaded:false
+        }
+      }
+    ),
   ),
 });
 

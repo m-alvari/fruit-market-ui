@@ -7,6 +7,8 @@ import { Store } from "@ngrx/store";
 import { MenuItem } from "primeng/api";
 import * as loginActions from "@core/ngrx/actions/login.action";
 import { selectActiveBasket } from "@core/ngrx/reducers/basket.reducers";
+import * as basketActions from "@core/ngrx/actions/basket.actions";
+
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
@@ -49,6 +51,7 @@ export class HeaderComponent {
   logOut() {
     this.authService.removeToken();
     this.store.dispatch(loginActions.logOut());
+    this.store.dispatch(basketActions.clearBasket());
     this.router.navigate(["/accounts/login"]);
   }
 }

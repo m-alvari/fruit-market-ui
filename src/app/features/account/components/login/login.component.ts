@@ -5,6 +5,7 @@ import { AuthService } from "@core/service/auth.service";
 import { AccountService } from "@features/account/services/account.service";
 import { Store } from "@ngrx/store";
 import * as loginActions from "@core/ngrx/actions/login.action";
+import * as basketActions from "@core/ngrx/actions/basket.actions";
 
 @Component({
   selector: "app-login",
@@ -36,6 +37,7 @@ export class LoginComponent {
         const user = this.authService.getUserInfo();
         if (user) {
           this.store.dispatch(loginActions.setUser({ user: user }));
+          this.store.dispatch(basketActions.loadBasket());
         }
         this.router.navigate(["/"]);
       });
