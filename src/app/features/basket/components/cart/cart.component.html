@@ -12,6 +12,18 @@
         >
           Cart
         </a>
+
+        <div class="flex items-center" >
+          <div class="pl-3 inline-block no-underline hover:text-black">
+            <p-button
+              label="order"
+              icon="pi pi-check"
+              pTooltip="* Please click after completing your purchase *"
+              tooltipPosition="left"
+              (onClick)="order()"
+            ></p-button>
+          </div>
+        </div>
       </div>
     </nav>
 
@@ -67,14 +79,19 @@
             />
           </div>
 
-          <div
-            class="rounded-e-lg p-3 h-11 focus:outline-none"
-
-          >
-            <i class="las la-minus" (click)="decrement(item)" *ngIf="item.count >= 2"></i>
+          <div class="rounded-e-lg p-3 h-11 focus:outline-none">
+            <i
+              class="las la-minus"
+              (click)="decrement(item)"
+              *ngIf="item.count >= 2"
+            ></i>
           </div>
           <div>
-            <i class="pi pi-trash" (click)="deleteAllBasketConfirm(item)" *ngIf="item.count < 2"></i>
+            <i
+              class="pi pi-trash"
+              (click)="deleteAllBasketConfirm(item)"
+              *ngIf="item.count < 2"
+            ></i>
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import {
   NG_VALUE_ACCESSOR,
 } from "@angular/forms";
 import { GenderType } from "@shared/models/gender.enum";
-import { GenderOption } from "@shared/models/gender.model";
+import type { GenderOption } from "@shared/models/gender.model";
 
 @Component({
   selector: "app-gender",

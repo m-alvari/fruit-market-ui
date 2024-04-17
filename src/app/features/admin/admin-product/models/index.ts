@@ -1,1 +1,1 @@
-export * from "@features/admin/admin-product/models/create-product";
+export * from "./create-product.model";

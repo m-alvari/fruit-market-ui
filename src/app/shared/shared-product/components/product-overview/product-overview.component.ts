@@ -1,14 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { JwtToken } from "@core/models";
+import type { JwtToken } from "@core/models";
 import { AuthService } from "@core/service/auth.service";
 import { FavoriteService } from "@features/product/services/favorite.service";
-import { Product } from "@shared/shared-product/models";
+import type {  ProductDetail } from "@shared/shared-product/models";
 import { OrderBy } from "@shared/shared-product/models/orderby.enum";
-import { ProductDetail } from "@shared/shared-product/models/product-detail.model";
 import { SharedProductService } from "@shared/shared-product/services/shared-product.service";
 import { MessageService } from "primeng/api";
-import { Subject, debounceTime, of } from "rxjs";
+import { Subject, debounceTime } from "rxjs";
 
 @Component({
   selector: "app-product-overview",

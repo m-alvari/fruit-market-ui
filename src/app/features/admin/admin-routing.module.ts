@@ -30,6 +30,13 @@ const routes: Routes = [
             (j) => j.AdminUserModule,
           ),
       },
+      {
+        path: "orders",
+        loadChildren: () =>
+          import("@features/admin/admin-order/admin-order.module").then(
+            (u) => u.AdminOrderModule,
+          ),
+      },
     ],
   },
 ];

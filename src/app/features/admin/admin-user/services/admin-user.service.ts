@@ -1,10 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "@env/environment";
-import { User } from "@shared/models/user.model";
-import { Observable, ObservableInput } from "rxjs";
-import { createUser } from "../models";
-import { OrderBy } from "@shared/shared-product/models/orderby.enum";
+import type { User } from "@shared/models/user.model";
+import { Observable } from "rxjs";
+import type { createUser } from "../models";
+import { OrderBy } from "@shared/shared-product/models";
 
 @Injectable({
   providedIn: "root",

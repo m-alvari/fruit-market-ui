@@ -1,13 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { CreateBasket } from "@features/basket/models/create-basket.model";
 import { BasketService } from "@features/basket/services/basket.service";
 import { ProductService } from "@features/product/services/product.service";
 import { Store } from "@ngrx/store";
-import { Product } from "@shared/shared-product/models";
+import type { Product } from "@shared/shared-product/models";
 import { isNumber } from "@utils/number.util";
 import { Subject, debounceTime } from "rxjs";
 import * as basketAction from "@core/ngrx/actions/basket.actions";
+import type { CreateBasket } from "@features/basket/models";
 
 @Component({
   selector: "app-product-detail",
@@ -41,7 +41,7 @@ export class ProductDetailComponent implements OnInit {
       });
     }
 
-    this.basket$.pipe(debounceTime(1000)).subscribe((counter) => {
+    this.basket$.pipe(debounceTime(500)).subscribe((counter) => {
       this.updateBasket({ count: counter, productId: this.id! });
     });
   }

@@ -1,9 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "@env/environment";
-import { Product } from "@shared/shared-product/models";
+import type { Product } from "@shared/shared-product/models";
 import { Observable } from "rxjs";
-import { CreateProduct } from "../models/create-product.model";
+import type { CreateProduct } from "../models";
 
 @Injectable({
   providedIn: "root",

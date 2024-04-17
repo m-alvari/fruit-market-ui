@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { BasketDetail } from "@features/basket/models/basket-detail.model";
 import { BasketService } from "@features/basket/services/basket.service";
 import { ProductService } from "@features/product/services/product.service";
 import { Store } from "@ngrx/store";
@@ -9,7 +8,11 @@ import {
   MessageService,
 } from "primeng/api";
 import { finalize } from "rxjs";
-import * as basketAction from '@core/ngrx/actions/basket.actions';
+import * as basketAction from "@core/ngrx/actions/basket.actions";
+import type { BasketDetail } from "@features/basket/models";
+import { AdminOrderService } from "@features/admin/admin-order/services/admin-order.service";
+import { CreateOrder, OrderList } from "@features/admin/admin-order/models";
+import { createUser } from "@features/admin/admin-user/models";
 
 @Component({
   selector: "app-cart",
@@ -24,11 +27,23 @@ export class CartComponent implements OnInit {
     private readonly productService: ProductService,
     private readonly messageService: MessageService,
     private readonly confirmationService: ConfirmationService,
-    private readonly store : Store,
+    private readonly store: Store,
+    private readonly adminOrderService: AdminOrderService,
   ) {}
 
   ngOnInit(): void {
     this.loadData();
+  }
+
+  order() {
+    let productIds: CreateOrder = {productIds:this.data2.map((x)=>x.productId)};
+    this.adminOrderService.addOrder(productIds).subscribe(() => {
+      this.messageService.add({
+        severity: "success",
+        summary: "",
+        detail: "",
+      });
+    });
   }
 
   loadData() {
@@ -77,7 +92,9 @@ export class CartComponent implements OnInit {
         summary: "Delete",
         detail: "product deleted from basket",
       });
-      this.store.dispatch(basketAction.deleteBasket({productId:item.productId}));
+      this.store.dispatch(
+        basketAction.deleteBasket({ productId: item.productId }),
+      );
       this.loadData();
     });
   }

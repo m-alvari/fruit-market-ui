@@ -8,6 +8,7 @@ import { MenuItem } from "primeng/api";
 import * as loginActions from "@core/ngrx/actions/login.action";
 import { selectActiveBasket } from "@core/ngrx/reducers/basket.reducers";
 import * as basketActions from "@core/ngrx/actions/basket.actions";
+import { ViewportScroller } from "@angular/common";
 
 @Component({
   selector: "app-header",
@@ -24,6 +25,7 @@ export class HeaderComponent {
     private readonly authService: AuthService,
     private readonly store: Store,
     private readonly router: Router,
+    private scroller: ViewportScroller,
   ) {
     this.activeUser$.subscribe((res) => {
       this.user = res;
@@ -46,6 +48,10 @@ export class HeaderComponent {
         },
       },
     ];
+  }
+
+  goDown() {
+    this.scroller.scrollToAnchor("targetBlue");
   }
 
   logOut() {

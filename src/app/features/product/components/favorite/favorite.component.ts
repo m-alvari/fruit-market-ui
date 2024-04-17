@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FavoriteDetail } from "@features/product/models/favorite-detail.model";
+import type { FavoriteDetail } from "@features/product/models";
 import { FavoriteService } from "@features/product/services/favorite.service";
 import { ProductService } from "@features/product/services/product.service";
 

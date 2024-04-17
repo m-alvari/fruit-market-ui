@@ -1,9 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from "@angular/core";
+import { ChangeDetectorRef, Component, ViewChild } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { selectActiveUser } from "@core/ngrx/reducers/login.reducers";
 import { UserService } from "@features/user/services/user.service";
 import { Store } from "@ngrx/store";
-import { User } from "@shared/models/user.model";
+import type { User } from "@shared/models/user.model";
 import * as loginAction from "@core/ngrx/actions/login.action";
 import { take } from "rxjs";
 import {

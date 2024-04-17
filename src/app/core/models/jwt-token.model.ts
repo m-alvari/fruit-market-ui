@@ -1,4 +1,3 @@
-
 export interface JwtToken {
   userId: number;
   username: string;

@@ -2,9 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "@env/environment";
-import { Product } from "../models";
 import { OrderBy } from "../models/orderby.enum";
-import { ProductDetail } from "../models/product-detail.model";
+import type { ProductDetail } from "../models/product-detail.model";
 
 @Injectable({
   providedIn: "root",

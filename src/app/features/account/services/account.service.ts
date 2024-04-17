@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { environment } from "@env/environment";
 import type { LoginAccountRequest, LoginTokenResponse } from "../models";
 import { Observable } from "rxjs";
-import { User } from "@shared/models/user.model";
+import type { User } from "@shared/models/user.model";
 
 
 

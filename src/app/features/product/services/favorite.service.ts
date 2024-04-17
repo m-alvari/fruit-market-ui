@@ -1,11 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { environment } from "@env/environment";
-import { Product } from "@shared/shared-product/models";
 import { Observable } from "rxjs";
-import { CreateFavorite } from "../models/create-favorite.model";
-import { ProductDetail } from "@shared/shared-product/models/product-detail.model";
-import { FavoriteDetail } from "../models/favorite-detail.model";
+import type { CreateFavorite } from "../models/create-favorite.model";
+import type { FavoriteDetail } from "../models/favorite-detail.model";
 
 @Injectable({
   providedIn: "root",

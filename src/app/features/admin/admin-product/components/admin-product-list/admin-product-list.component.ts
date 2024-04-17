@@ -1,4 +1,4 @@
-import { Component, OnInit, numberAttribute } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Product } from "@shared/shared-product/models";
 import { SharedProductService } from "@shared/shared-product/services/shared-product.service";
 import { ProductDialog } from "../../dialogs/product-dialog";
