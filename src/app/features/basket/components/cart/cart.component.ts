@@ -36,7 +36,9 @@ export class CartComponent implements OnInit {
   }
 
   order() {
-    let productIds: CreateOrder = {productIds:this.data2.map((x)=>x.productId)};
+    let productIds: CreateOrder = {
+      productIds: this.data2.map((x) => x.productId),
+    };
     this.adminOrderService.addOrder(productIds).subscribe(() => {
       this.messageService.add({
         severity: "success",
