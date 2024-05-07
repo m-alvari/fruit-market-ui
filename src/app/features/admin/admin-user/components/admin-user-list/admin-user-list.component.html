@@ -1,5 +1,9 @@
-<p-toast></p-toast>
-<p-confirmDialog [style]="{ width: '50vw' }" ></p-confirmDialog>
+<p-toast
+  [showTransformOptions]="'translateY(100%)'"
+  [showTransitionOptions]="'400ms'"
+  [showTransformOptions]="'translateX(100%)'"
+></p-toast>
+<p-confirmDialog [style]="{ width: '50vw' }"></p-confirmDialog>
 <div
   class="bg-gradient-to-r from-blue-900 to-gray-800 p-2 shadow text-lg rounded-2xl text-white"
 >
@@ -56,8 +60,16 @@
         </td>
 
         <td>
-          <p-button class="mr-3" icon="pi pi-pencil" (onClick)="updateUserDialog(user)" ></p-button>
-          <p-button icon="pi pi-trash" severity="danger" (onClick)="deleteUserConfirm(user.id)" ></p-button>
+          <p-button
+            class="mr-3"
+            icon="pi pi-pencil"
+            (onClick)="updateUserDialog(user)"
+          ></p-button>
+          <p-button
+            icon="pi pi-trash"
+            severity="danger"
+            (onClick)="deleteUserConfirm(user.id)"
+          ></p-button>
         </td>
       </tr>
     </ng-template>

@@ -14,23 +14,21 @@ import type { ProductDetail } from "@shared/shared-product/models";
 import { OrderBy } from "@shared/shared-product/models/orderby.enum";
 import { SharedProductService } from "@shared/shared-product/services/shared-product.service";
 import { MessageService } from "primeng/api";
-import { Subject, debounceTime, finalize } from "rxjs";
+import { Subject, debounceTime, finalize, take } from "rxjs";
 
 @Component({
   selector: "app-product-overview",
   templateUrl: "./product-overview.component.html",
   styleUrls: ["./product-overview.component.scss"],
   animations: [
-    trigger('boxAnimation', [
-      transition(':enter', [
+    trigger("boxAnimation", [
+      transition(":enter", [
         style({ opacity: 0 }),
-        animate('300ms', style({ opacity: 1})),
+        animate("300ms", style({ opacity: 1 })),
       ]),
-      transition(':leave', [
-
-      ]),
-    ])
-  ]
+      transition(":leave", []),
+    ]),
+  ],
 })
 export class ProductOverviewComponent implements OnInit {
   user: JwtToken | null = null;
@@ -67,7 +65,6 @@ export class ProductOverviewComponent implements OnInit {
   }
 
   search() {
-
     this.isLoading = true;
     this.sharedProductService
       .getAll(
@@ -88,11 +85,19 @@ export class ProductOverviewComponent implements OnInit {
       this.favoriteService
         .postFavorite({ productId: item.id })
         .subscribe(() => {
-          this.messageService.add({
-            severity: "info",
-            summary: "Info",
-            detail: "Add in your favorite",
-          });
+          if (item.isFavorite) {
+            this.messageService.add({
+              severity: "error",
+              summary: "Product Deleted",
+              detail: "Product has been deleted successfully.",
+            });
+          } else {
+            this.messageService.add({
+              severity: "success",
+              summary: "Product Added",
+              detail: "Product has been added successfully.",
+            });
+          }
           item.isFavorite = !item.isFavorite;
         });
     } else {

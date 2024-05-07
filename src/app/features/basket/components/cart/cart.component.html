@@ -1,4 +1,8 @@
-<p-toast></p-toast>
+<p-toast
+  [showTransformOptions]="'translateY(100%)'"
+  [showTransitionOptions]="'400ms'"
+  [showTransformOptions]="'translateX(100%)'"
+></p-toast>
 <p-confirmDialog [style]="{ width: '50vw' }"></p-confirmDialog>
 
 <section class="py-8">
@@ -13,7 +17,7 @@
           Cart
         </a>
 
-        <div class="flex items-center" >
+        <div class="flex items-center">
           <div class="pl-3 inline-block no-underline hover:text-black">
             <p-button
               label="order"
@@ -58,7 +62,7 @@
       <div class="pt-3 flex items-center justify-between">
         <p>{{ item.name }}</p>
       </div>
-      <p class="pt-1 text-gray-900">{{ item.price }}$</p>
+      <p class="pt-1 text-gray-900">{{ item.price  * item.count |  number: '1.2-2'  }} $</p>
 
       <div class="py-3 md:w-full text-xl" *ngIf="data2">
         <div class="relative flex items-center max-w-[13rem] text-gray-900">

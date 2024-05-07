@@ -41,7 +41,7 @@ export class ProductDetailComponent implements OnInit {
       });
     }
 
-    this.basket$.pipe(debounceTime(500)).subscribe((counter) => {
+    this.basket$.pipe(debounceTime(200)).subscribe((counter) => {
       this.updateBasket({ count: counter, productId: this.id! });
     });
   }
@@ -63,8 +63,6 @@ export class ProductDetailComponent implements OnInit {
       }else if (this.counterValue == 0) {
         this.store.dispatch(basketAction.deleteBasket({productId:basket.productId}))
       }
-
-
     });
   }
 
@@ -87,4 +85,5 @@ export class ProductDetailComponent implements OnInit {
       this.basket$.next(this.counterValue);
     }
   }
+
 }
